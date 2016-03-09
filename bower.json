@@ -1,11 +1,11 @@
 {
-  "name"         : "angular-bootstrap-datetimepicker-directive",
-  "version"      : "0.1.3",
+  "name": "angular-eonasdan-datetimepicker",
+  "version"      : "0.2.0",
   "authors"      : [
-    "Diosney <diosney.s@gmail.com>"
+    "Atais <atais.jr@gmail.com>"
   ],
   "description"  : "A wrapper directive around the bootstrap-datetimepicker component.",
-  "main"         : "angular-bootstrap-datetimepicker-directive.js",
+  "main"         : "dist/angular-eonasdan-datetimepicker.js",
   "keywords"     : [
     "angular",
     "bootstrap",
@@ -13,8 +13,12 @@
     "directive",
     "wrapper"
   ],
+  "repository"  : {
+    "type" : "git",
+    "url"  : "git://github.com/atais/angular-eonasdan-datetimepicker.git"
+  },
   "license"      : "MIT",
-  "homepage"     : "http://github.com/diosney/angular-bootstrap-datetimepicker-directive",
+  "homepage"     : "https://github.com/atais/angular-eonasdan-datetimepicker",
   "ignore"       : [
     "**/.*",
     "node_modules",
@@ -26,9 +30,5 @@
     "angular"                           : "*",
     "eonasdan-bootstrap-datetimepicker" : ">=4.0.0",
     "jquery"                            : "*"
-  },
-  "repository"   : {
-    "type" : "git",
-    "url"  : "git://github.com/diosney/angular-bootstrap-datetimepicker-directive.git"
   }
 }
