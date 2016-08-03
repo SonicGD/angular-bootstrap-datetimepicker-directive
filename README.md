@@ -1,146 +1,100 @@
-# angular-bootstrap-datetimepicker-directive
+# angular-eonasdan-datetimepicker
 
-A wrapper directive around the [bootstrap-datetimepicker component](http://eonasdan.github.io/bootstrap-datetimepicker/).
+* A wrapper directive around the [bootstrap-datetimepicker component](http://eonasdan.github.io/bootstrap-datetimepicker/).
+* It is a continuation of [angular-bootstrap-datetimepicker-directive](https://github.com/diosney/angular-bootstrap-datetimepicker-directive).
 
-## How to Use
+**Every version brings some breaking changes so please read the manual carefully.**
 
-1- Install the directive via bower (or download it manually, as you prefer)
+Having problems using the wrapper? <br>
+Please, post an issue on GitHub and **provide a plunker** with your question.
 
-	bower install angular-bootstrap-datetimepicker-directive --save
+## Installation
 
-2- Load all required scripts by `eonasdan-bootstrap-datetimepicker`.
-Refer to the [official guide](http://eonasdan.github.io/bootstrap-datetimepicker/Installing/).
-
-3- Include the `angular-bootstrap-datetimepicker-directive.js` into your HTML.
-A minified variant is provided for production named `angular-bootstrap-datetimepicker-directive.min.js`.
-
-4- Inject the `datetimepicker` directive in you angular app:
-
-	angular
-	  .module('myApp', [
-	    // Other injected modules.
-
-	    'datetimepicker'
-	  ]);
-
-5- You can start using the directive in your HTML in several ways like:
-
-a) Passing in a JSON object with the options
-```html
-	<input type="text" class="form-control input-sm"
-
-	       datetimepicker
-	       datetimepicker-options="{icons:{next:'glyphicon glyphicon-arrow-right',previous:'glyphicon glyphicon-arrow-left',up:'glyphicon glyphicon-arrow-up',down:'glyphicon glyphicon-arrow-down'}}"
-
-	       placeholder="..."
-	       name="time"
-	       ng-model="ctrl.time">
+1) Install the directive via bower or npm (or download it manually, as you prefer)
+```javascript
+npm install angular-eonasdan-datetimepicker --save
 ```
-b) Passing in an angular scoped variable that holds the options
-
-```html
-	<input type="text" class="form-control input-sm"
-
-	       datetimepicker
-	       datetimepicker-options="{{ ctrl.datetimepicker_options }}"
-
-	       placeholder="..."
-	       name="time"
-	       ng-model="ctrl.time">
-```
-c) Set the default options with the provider and use the datepicker with those
-default options.
-
-```html
-	<input type="text" class="form-control input-sm"
-
-	       datetimepicker
-
-	       placeholder="..."
-	       name="time"
-	       ng-model="ctrl.time">
-
-	<script type="text/javascript">
-		'use strict';
-
-		angular
-				.module('app', [
-					'datetimepicker'
-				])
-				.config([
-					'datetimepickerProvider',
-					function (datetimepickerProvider) {
-						datetimepickerProvider.setOptions({
-							locale: 'en'
-						});
-					}
-				]);
-	</script>
+```javascript
+bower install angular-eonasdan-datetimepicker --save
 ```
 
-All options are named identically with the same letter case.
+2) Inject the `datetimepicker` directive in you angular app:
+```javascript
+angular.module('myApp', ['ae-datetimepicker']);
+```
 
-## Supported `eonasdan-bootstrap-datetimepicker` options
+3) Start using!
 
-All of them :) If you find anyone that is causing havoc file an issue. Please,
-first test that is the directive and not the original jQuery plugin which is
-causing it.
+## Examples
 
-## Setting default values for all datetimepickers
+* Simple example, with one datetimepicker: http://plnkr.co/n8L8UZ
+* Example with two, linked datetimepickers: http://plnkr.co/ZSjN8f
+* Validation example: http://plnkr.co/NmFt43
+* From/To validation example: http://plnkr.co/ZeKX7z
 
-Use the `datetimepickerProvider` to set them
+## Directive usage
 
-	<script type="text/javascript">
-		'use strict';
+Simply add `datetimepicker` tag and add the `ng-model` (required) attribute. Currently the `datetimepicker` tag can be added on either `input-group` or the `input` element.
 
-		angular
-				.module('app', [
-					'datetimepicker'
-				])
-				.config([
-					'datetimepickerProvider',
-					function (datetimepickerProvider) {
-						datetimepickerProvider.setOptions({
-							locale: 'en'
-						});
-					}
-				]);
-	</script>
+Option #1
+```html
+<div class="input-group" datetimepicker ng-model="vm.date">
+    <input type="text" class="form-control"/>
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+</div>
+```
 
-Those default options will be overwritten by the provided in the inline definition.
+Option #2
+```html
+<div class="input-group">
+    <input type="text" class="form-control" datetimepicker ng-model="vm.date"/>
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+</div>
+```
 
-## Why passing an unified JSON and not option by option?
+In both cases the directive will work exactly the same. Also triggering the callendar with the icon in `span` will work in both cases. **However** if you wish to use a custom validation directive, you probably would want to add the directive in `input` element. See the: [From/To validation example](http://plnkr.co/ZeKX7z)  
 
-Just one word: **simplicity**.
 
-The option by option variant have a lot of related issues, one of them is that
-the directive has to know every single option of the original plugin, how to parse
-it, how to include it into the directive with the isolated scope and so on.
-Besides, this limit future options since have to be added too.
+## Parameters
 
-There are a lot more but that isn't the goal of this README after all, so I won't
-do a full enumeration of them.
+### ng-model
 
-## License
+If `ng-model` is `null` or `undefined`, the initial value will not be set!
 
-The MIT License (MIT)
+### options
 
-Copyright (c) 2015 Diosney Sarmiento
+With `options` attribute you can pass an object containing all the required configuration for your datetimepicker.
+All the options available in the original library are supported. Check the list of options on official website: http://eonasdan.github.io/bootstrap-datetimepicker/Options/
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+```html
+<div class="input-group" datetimepicker ng-model="vm.date" options="vm.options">
+```
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+```javascript
+vm.options = {
+    format: "DD.MM.YYYY",
+    maxDate: dateTo
+};
+```
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+### on-change
+
+You can pass a function that will be called every time the value of datetimepicker is changed. <br>
+See: [Example with two, linked datetimepickers](http://plnkr.co/ZSjN8f)
+
+Detailed description of event: http://eonasdan.github.io/bootstrap-datetimepicker/Events/#dpchange
+
+### on-click
+
+You can pass a function that will be called every time the datetimepicker is clicked. <br>
+The event occurs when you open or close the datetimepicker.
+
+## Special thanks
+
+* [Rodrigo Saling](https://github.com/rodrigosaling) for help on making custom validators work
+
+## [License](https://github.com/atais/angular-eonasdan-datetimepicker/blob/master/LICENSE)
